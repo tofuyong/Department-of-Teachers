@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Listing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1>Welcome to the Tofu Academy's Department Directory!</h1>
+    <br><br>
+
+    <div class="container">
+        <table border="1" width="50%">
+            <thead>
+                <tr>
+                    <th>Dept Code</th>
+                    <th>Name</th>
+                    <th>Number of teachers</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr data-th-each="dept : ${departments}">
+                    <td data-th-text="${dept.code}"></td>
+                    <td data-th-text="${dept.name}"></td>
+                    <td data-th-text="${dept.teachers}"></td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <br><br>
+        <a th:href="@{/addnew}">Add new department</a>
+    </div>
+
+</body>
+
+</html>

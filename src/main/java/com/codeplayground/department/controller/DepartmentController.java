@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -41,11 +42,32 @@ public class DepartmentController {
     public String addDepartment(@Valid @ModelAttribute("department") Department deptForm, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "departmentform";
-        } else {
-            deptRepo.addDept(deptForm);  
-            return "redirect:/";  
+        } 
+        deptRepo.addDept(deptForm);  
+        return "redirect:/";  
+    }
+
+    @GetMapping("/updatedept/{code}") //update with path variable code
+    public String updateDept(@PathVariable("code") String code, Model model) {
+        Department department = deptRepo.findByCode(code);
+        model.addAttribute("department", department);
+        return "departmentupdate";
+    }
+
+    @PostMapping("/updatedept")
+    public String updateDeptProcess(@Valid @ModelAttribute("department") Department deptForm, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "departmentupdate";
         }
-        
+        deptRepo.updateDept(deptForm);
+        return "redirect:/";
+    }
+
+    @GetMapping("/deletedept/{code}") //delete with path variable code
+    public String delDept (@PathVariable("code") String code) {
+        Department department = deptRepo.findByCode(code);
+        deptRepo.deleteDept(department);
+        return "redirect:/";
     }
 
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.codeplayground.department.model.Department;
 import com.codeplayground.department.repository.DepartmentRepository;
+import com.codeplayground.department.service.DepartmentService;
 
 import jakarta.validation.Valid;
 
@@ -22,11 +23,11 @@ import jakarta.validation.Valid;
 public class DepartmentController {
 
     @Autowired
-    DepartmentRepository deptRepo;
+    DepartmentService deptService;
 
     @GetMapping 
     public String deptListPage(Model model) {
-        List<Department> departments = deptRepo.listAll();
+        List<Department> departments = deptService.getAllDept();
         model.addAttribute("departments", departments);
         return "departmentlist";
     }
@@ -43,13 +44,13 @@ public class DepartmentController {
         if (result.hasErrors()) {
             return "departmentform";
         } 
-        deptRepo.addDept(deptForm);  
+        deptService.addDept(deptForm);  
         return "redirect:/";  
     }
 
     @GetMapping("/updatedept/{code}") //update with path variable code
     public String updateDept(@PathVariable("code") String code, Model model) {
-        Department department = deptRepo.findByCode(code);
+        Department department = deptService.findByCode(code);
         model.addAttribute("department", department);
         return "departmentupdate";
     }
@@ -59,15 +60,14 @@ public class DepartmentController {
         if (result.hasErrors()) {
             return "departmentupdate";
         }
-        deptRepo.updateDept(deptForm);
+        deptService.updateDept(deptForm);
         return "redirect:/";
     }
 
     @GetMapping("/deletedept/{code}") //delete with path variable code
     public String delDept (@PathVariable("code") String code) {
-        Department department = deptRepo.findByCode(code);
-        deptRepo.deleteDept(department);
+        Department department = deptService.findByCode(code);
+        deptService.deleteDept(department);
         return "redirect:/";
     }
-
 }

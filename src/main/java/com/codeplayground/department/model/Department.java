@@ -1,6 +1,7 @@
 package com.codeplayground.department.model;
 
 import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
@@ -13,6 +14,7 @@ public class Department {
     @NotEmpty(message = "Department name is a mandatory field")
     private String name;
 
+    @Min(value=0, message="Minimum number of teachers in a department is 0")
     @Max(value=50, message="Maximum number of teachers in a department is 50")
     private Integer teachers; 
 

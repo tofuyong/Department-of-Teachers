@@ -19,7 +19,7 @@
 
             <div class="mb-3">
                 <label for="Department Code" class="form-label">Department Code</label>
-                <input type="text" class="form-control" name="code" data-th-field="*{code}">
+                <input readonly type="text" class="form-control" name="code" data-th-field="*{code}">
             </div>
             <div class="alert alert-danger" data-th-if="${#fields.hasErrors('code')}" th:errors="*{code}"></div>
 

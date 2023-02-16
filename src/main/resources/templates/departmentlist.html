@@ -17,12 +17,13 @@
         
         <a th:href="@{/addnew}" class="btn btn-primary">Add new department</a>
         <br><br>
-        <table border="1" width="50%">
+        <table border="1" width="60%">
             <thead>
                 <tr>
                     <th>Dept Code</th>
                     <th>Name</th>
                     <th>Number of teachers</th>
+                    <th>Status</th>
                 </tr>
             </thead>
 
@@ -31,7 +32,8 @@
                     <td data-th-text="${dept.code}"></td>
                     <td data-th-text="${dept.name}"></td>
                     <td data-th-text="${dept.teachers}"></td>
-                    <td>
+                    <td data-th-text=="${dept.teachers > 0 ? 'Active' : 'Inactive'}"></td>
+                    <td> 
                         <a th:href="@{/updatedept/{code}(code=${dept.code})}">Update</a>
                         <a th:href="@{/deletedept/{code}(code=${dept.code})}">Delete</a>
                     </td>

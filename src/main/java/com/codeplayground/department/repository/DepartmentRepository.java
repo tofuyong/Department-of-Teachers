@@ -12,10 +12,11 @@ public class DepartmentRepository {
     private List<Department> allDepartments = new ArrayList<>();
 
     public DepartmentRepository() {
-        allDepartments.add(new Department("100", "Coding", 10));
-        allDepartments.add(new Department("200", "Baking", 20));
-        allDepartments.add(new Department("300", "PE", 30));
-        allDepartments.add(new Department("400", "Science", 40));
+        allDepartments.add(new Department("100", "English", 10));
+        allDepartments.add(new Department("200", "Mother Tongue", 20));
+        allDepartments.add(new Department("300", "Science", 30));
+        allDepartments.add(new Department("400", "Math", 40));
+        allDepartments.add(new Department("500", "Coding", 0));
     }
 
     public List<Department> listAll(){
@@ -26,10 +27,10 @@ public class DepartmentRepository {
         this.allDepartments.add(department);
     }
 
-    public Department findByCode(String code) {
-        Department dept = allDepartments.stream().filter(d -> d.getCode().equals(code)).findFirst().get();
-        return dept;
-    }
+    // public Department findByCode(String code) {
+    //     Department dept = allDepartments.stream().filter(d -> d.getCode().equals(code)).findFirst().get();
+    //     return dept;
+    // }
 
     public void updateDept(Department dept) {
         Department deptToUpdate = allDepartments.stream().filter(d -> d.getCode().equals(dept.getCode())).findFirst().get();

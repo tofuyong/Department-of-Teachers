@@ -1,11 +1,12 @@
 package com.codeplayground.department.model;
 
+import java.io.Serializable;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
-public class Department {
+public class Department implements Serializable {
 
     @NotEmpty(message = "Department code is a mandatory field")
     @Size(min=3, max=3, message="Department code must contain 3 digits")

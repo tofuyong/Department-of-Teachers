@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Confirmation Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body data-th-object="${dept}">
+
+    <div class="container">
+
+        <div class="col s12 m7">
+            <h3 class="header">Department added to directory: </h3>
+            <div class="card horizontal">
+              <div class="card-stacked">
+                <div class="card-content">
+
+                    <p data-th-text="'Department Code: ' + *{code}"></p>
+                    <br>
+                    
+                    <p data-th-text="'Department Name: ' + *{name}"></p>
+                    <br>
+                    
+                    <p data-th-text="'Number of teachers: ' + *{teachers}"></p>
+                    <br>
+                    
+                </div>
+              </div>
+            </div>
+        </div>
+    
+    </div>
+    <br><br>
+    
+    <a th:href="@{/}">Back to department list</a>
+    
+</body>
+
+</html>

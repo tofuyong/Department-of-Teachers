@@ -16,6 +16,14 @@ public class DepartmentService {
     private DepartmentRepository deptRepo;
 
     public void addDept(Department department) {
+        if (deptRepo.findByCode(department.getCode()) !=null) {
+            System.out.println("department already exists");
+            return;
+        }
+        if (deptRepo.findByCode(department.getCode()) !=null) {
+            System.out.println("department already exists");
+            return;
+        }
         deptRepo.save(department);
     }
 
@@ -28,7 +36,7 @@ public class DepartmentService {
     }
 
     public void updateDept(Department dept) {
-        deptRepo.save(dept); //assuming add and update both use hash map put function
+        deptRepo.update(dept); //assuming add and update both use hash map put function
     }
 
     public void deleteDept(Department dept) {

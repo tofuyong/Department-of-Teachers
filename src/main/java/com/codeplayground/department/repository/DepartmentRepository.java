@@ -16,7 +16,7 @@ public class DepartmentRepository {
 
     public void save (Department dept) {
         redisTemplate.opsForList().leftPush("departmentlist", dept.getCode());  
-        redisTemplate.opsForHash().put("departmentmap", dept.getCode(), dept); //name of map, key, value 
+        redisTemplate.opsForHash().put("departmentmap", dept.getCode(), dept); //name of map, key, value
     }
 
     public Department findByCode(String code){
@@ -39,7 +39,11 @@ public class DepartmentRepository {
 
     public void delete(Department dept) {
         redisTemplate.opsForHash().delete("departmentmap", dept.getCode()); //delete key
-        redisTemplate.opsForList().remove("departmentlist", 1 , dept.getCode()); //??
+        redisTemplate.opsForList().remove("departmentlist", 0 , dept.getCode());  
+    }
+
+    public void update(Department dept) {
+        redisTemplate.opsForHash().put("departmentmap", dept.getCode(), dept); 
     }
     
 }
